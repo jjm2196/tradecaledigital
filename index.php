@@ -38,7 +38,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
   <section class="hero home-hero">
     <div class="container hero-grid">
       <div class="hero-content" data-animate="fade-up">
-        <p class="eyebrow">Tools that win enquiries</p>
+        <p class="eyebrow">Tools that win enquiries & Help Customers</p>
         <h1>We build the <span class="text-pink">tools</span> that turn website visitors into customers.</h1>
         <p class="hero-text">
           Instant quote calculators, bespoke AI assistants and conversion-focused web tools — custom built for small businesses across Northern Ireland and the UK. Not another generic website. Tools that actually do a job.
