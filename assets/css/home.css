@@ -1,0 +1,110 @@
+/* =========================================================
+   Trade Scale Digital — home.css
+   Homepage-specific styling + animation layer.
+   Loads AFTER style.css, so it only adds, never breaks.
+   ========================================================= */
+
+/* ---- Pink accent inside headings ---- */
+.text-pink { color: var(--pink); }
+
+/* ---- Scroll animation system ---- */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(.16,1,.3,1),
+              transform 0.7s cubic-bezier(.16,1,.3,1);
+  will-change: opacity, transform;
+}
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Respect users who prefer no motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] { opacity: 1 !important; transform: none !important; transition: none; }
+}
+
+/* ---- Hero polish ---- */
+.home-hero h1 { max-width: 760px; }
+
+/* Animated floating logo-shape accent behind hero */
+.home-hero::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  left: -120px;
+  bottom: -80px;
+  background: radial-gradient(circle, rgba(226,24,91,0.10), transparent 70%);
+  border-radius: 50%;
+  animation: floatSlow 9s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-26px) scale(1.06); }
+}
+
+/* ---- Hero live-demo card ---- */
+.hero-demo-card { text-align: left; }
+.demo-counter { margin: 6px 0 18px; }
+.demo-price {
+  font-family: "League Spartan", system-ui, sans-serif;
+  font-size: 72px;
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: var(--pink);
+}
+.demo-sub {
+  margin: 6px 0 0;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.demo-bar {
+  height: 10px;
+  width: 100%;
+  border-radius: 999px;
+  background: var(--soft-pink);
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.demo-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pink), #ff5c93);
+  transition: width 1.4s cubic-bezier(.16,1,.3,1);
+}
+
+/* ---- Button shimmer on primary ---- */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+.btn-primary:hover::after { left: 130%; }
+
+/* ---- Service card lift refinement ---- */
+.service-card { position: relative; }
+.service-card .mini-link { margin-top: 16px; display: inline-flex; }
+
+/* ---- Mobile ---- */
+@media (max-width: 880px) {
+  .home-hero .hero-grid { grid-template-columns: 1fr; }
+  .demo-price { font-size: 60px; }
+}
